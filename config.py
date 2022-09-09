@@ -5,16 +5,17 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret-key'
 
-    BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'ENTER_STORAGE_ACCOUNT_NAME'
-    BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or 'ENTER_BLOB_STORAGE_KEY'
-    BLOB_CONTAINER = os.environ.get('BLOB_CONTAINER') or 'ENTER_IMAGES_CONTAINER_NAME'
+    BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'cmsproject'
+    BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or 'oZjuvPgY/4JJh0+mdg5PYFJE2R/INquTU6HnMmIcEt7yV1uMBX+9AZViBT7SdTxWwmXu+Gje8wc4+AStsKU2GQ=='
+    BLOB_CONTAINER = os.environ.get('BLOB_CONTAINER') or 'images'
 
-    SQL_SERVER = os.environ.get('SQL_SERVER') or 'ENTER_SQL_SERVER_NAME.database.windows.net'
-    SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'ENTER_SQL_DB_NAME'
+    SQL_SERVER = os.environ.get('SQL_SERVER') or 'cmsproject.database.windows.net'
+    # cmsproject.database.windows.net
+    SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'CMSproject'
     # CMSproject
-    SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or 'ENTER_SQL_SERVER_USERNAME'
+    SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or 'udacityadmin'
     #udacityadmin
-    SQL_PASSWORD = os.environ.get('SQL_PASSWORD') or 'ENTER_SQL_SERVER_PASSWORD'
+    SQL_PASSWORD = os.environ.get('SQL_PASSWORD') or 'Udacity-1'
     # Udacity-1
     # Below URI may need some adjustments for driver version, based on your OS, if running locally
     SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://' + SQL_USER_NAME + '@' + SQL_SERVER + ':' + SQL_PASSWORD + '@' + SQL_SERVER + ':1433/' + SQL_DATABASE  + '?driver=ODBC+Driver+17+for+SQL+Server'
