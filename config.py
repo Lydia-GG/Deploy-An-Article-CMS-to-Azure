@@ -2,28 +2,38 @@ import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret-key'
 
-    BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'cmsproject'
-    BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or 'oZjuvPgY/4JJh0+mdg5PYFJE2R/INquTU6HnMmIcEt7yV1uMBX+9AZViBT7SdTxWwmXu+Gje8wc4+AStsKU2GQ=='
-    BLOB_CONTAINER = os.environ.get('BLOB_CONTAINER') or 'images'
+    BLOB_ACCOUNT = os.environ.get(
+        'BLOB_ACCOUNT') or 'cmsproject'
+    # cmsproject
+    BLOB_STORAGE_KEY = os.environ.get(
+        'BLOB_STORAGE_KEY') or 'A1mM43pWPwcfFrSwIczADr0nYu9heiyD0Qx4KlS2UHnAbqBZiZz9jxPxI3p7cFMENX3Hu4z6n5x++AStFh62+g=='
+    BLOB_CONTAINER = os.environ.get(
+        'BLOB_CONTAINER') or 'images'
+    # images
 
-    SQL_SERVER = os.environ.get('SQL_SERVER') or 'cmsproject.database.windows.net'
-    # cmsproject.database.windows.net
-    SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'CMSproject'
+    SQL_SERVER = os.environ.get(
+        'SQL_SERVER') or 'mycmsproject.database.windows.net'
+    SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'cmsproject'
     # CMSproject
-    SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or 'udacityadmin'
-    #udacityadmin
-    SQL_PASSWORD = os.environ.get('SQL_PASSWORD') or 'Udacity-1'
+    SQL_USER_NAME = os.environ.get(
+        'SQL_USER_NAME') or 'udacityadmin'
+    # udacityadmin
+    SQL_PASSWORD = os.environ.get(
+        'SQL_PASSWORD') or 'Udacity-1'
     # Udacity-1
     # Below URI may need some adjustments for driver version, based on your OS, if running locally
-    SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://' + SQL_USER_NAME + '@' + SQL_SERVER + ':' + SQL_PASSWORD + '@' + SQL_SERVER + ':1433/' + SQL_DATABASE  + '?driver=ODBC+Driver+17+for+SQL+Server'
+    SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://' + SQL_USER_NAME + '@' + SQL_SERVER + ':' + \
+        SQL_PASSWORD + '@' + SQL_SERVER + ':1433/' + \
+        SQL_DATABASE + '?driver=ODBC+Driver+17+for+SQL+Server'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     ### Info for MS Authentication ###
     ### As adapted from: https://github.com/Azure-Samples/ms-identity-python-webapp ###
-    CLIENT_SECRET = "ENTER_CLIENT_SECRET_HERE"
+    CLIENT_SECRET = "ef81f743-e02d-4c51-b94a-3cbe1afe9c76"
     # In your production app, Microsoft recommends you to use other ways to store your secret,
     # such as KeyVault, or environment variable as described in Flask's documentation here:
     # https://flask.palletsprojects.com/en/1.1.x/config/#configuring-from-environment-variables
@@ -31,15 +41,17 @@ class Config(object):
     # if not CLIENT_SECRET:
     #     raise ValueError("Need to define CLIENT_SECRET environment variable")
 
-    AUTHORITY = "https://login.microsoftonline.com/common"  # For multi-tenant app, else put tenant name
+    # For multi-tenant app, else put tenant name
+    AUTHORITY = "https://login.microsoftonline.com/common"
     # AUTHORITY = "https://login.microsoftonline.com/Enter_the_Tenant_Name_Here"
 
-    CLIENT_ID = "ENTER_CLIENT_ID_HERE"
+    CLIENT_ID = "c0afa6fb-4fcf-4151-b98e-2872e1900c23"
 
-    REDIRECT_PATH = "/getAToken"  # Used to form an absolute URL; must match to app's redirect_uri set in AAD
+    # Used to form an absolute URL; must match to app's redirect_uri set in AAD
+    REDIRECT_PATH = "/getAToken"
 
     # You can find the proper permission names from this document
     # https://docs.microsoft.com/en-us/graph/permissions-reference
-    SCOPE = ["User.Read"] # Only need to read user profile for this app
+    SCOPE = ["User.Read"]  # Only need to read user profile for this app
 
     SESSION_TYPE = "filesystem"  # Token cache will be stored in server-side session
