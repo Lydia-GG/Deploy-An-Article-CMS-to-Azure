@@ -21,6 +21,7 @@
 I chose App service for the CMS application.
 ### Assess app changes that would change your decision.
 
-*Detail how the app and any other needs would have to change for you to change your decision in the last section.* 
-why I chose app services :
+*Detail how the app and any other needs would have to change for you to change your decision in the last section.*   
+##### why I chose app services :  
+
 CMS application is a lightweight app and app service costs are less than VMs and provides continuous deployment. also, I want to focus more on app development and there is no need for hardware service.
