@@ -12,7 +12,6 @@ from flask_login import current_user, login_user, logout_user, login_required
 from FlaskWebProject.models import User, Post
 import msal
 import uuid
-import logging
 
 imageSourceUrl = 'https://' + app.config['BLOB_ACCOUNT'] + \
     '.blob.core.windows.net/' + app.config['BLOB_CONTAINER'] + '/'
@@ -24,7 +23,6 @@ imageSourceUrl = 'https://' + app.config['BLOB_ACCOUNT'] + \
 def home():
     user = User.query.filter_by(username=current_user.username).first_or_404()
     posts = Post.query.all()
-
     return render_template(
         'index.html',
         title='Home Page',
@@ -73,11 +71,11 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            app.logger.warning('Invalid username or password')
+            app.logger.warning("Invalid login attempt")
             flash('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
-        app.logger.warning('Successful User Login')
+        app.logger.info("You logged in successfully")
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('home')
@@ -97,10 +95,12 @@ def authorized():
     if request.args.get('code'):
         cache = _load_cache()
         # TODO: Acquire a token from a built msal app, along with the appropriate redirect URI
+        # result = None
         result = _build_msal_app(cache=cache).acquire_token_by_authorization_code(
             request.args['code'],
             scopes=Config.SCOPE,
             redirect_uri=url_for('authorized', _external=True, _scheme='https'))
+
         if "error" in result:
             return render_template("auth_error.html", result=result)
         session["user"] = result.get("id_token_claims")
@@ -115,7 +115,6 @@ def authorized():
 @app.route('/logout')
 def logout():
     logout_user()
-    app.logger.warning('Successful User logout!')
     if session.get("user"):  # Used MS Login
         # Wipe out user and its token cache from session
         session.clear()
@@ -126,21 +125,19 @@ def logout():
 
     return redirect(url_for('login'))
 
-# Sources for below: Examples from the Udacity module on Security and Monitoring Basics
-
 
 def _load_cache():
-    # TODO: Load the cache from `msal`, if it exists
+    # TODO: Load the cache from `msal`, if it exists:
     cache = msal.SerializableTokenCache()
-    if session.get('token_cache'):
-        cache.deserialize(session['token_cache'])
+    if session.get("token_cache"):
+        cache.deserialize(session["token_cache"])
     return cache
 
 
 def _save_cache(cache):
     # TODO: Save the cache, if it has changed
     if cache.has_state_changed:
-        session['token_cache'] = cache.serialize()
+        session["token_cache"] = cache.serialize()
 
 
 def _build_msal_app(cache=None, authority=None):
