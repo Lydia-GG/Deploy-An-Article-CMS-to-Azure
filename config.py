@@ -6,20 +6,16 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret-key'
 
-    BLOB_ACCOUNT = os.environ.get(
-        'BLOB_ACCOUNT') or 'cmsproject'
+    BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'cmsproject'
     BLOB_STORAGE_KEY = os.environ.get(
-        'BLOB_STORAGE_KEY') or 'TcCRXu6dKL9pSGlhKoOeRXMqXdSMCeuo/s4w0L6HH7mU0u4/zLB6v0agLuGGCthDH2YnsYLTkxwT+AStpKl+JQ=='
-    BLOB_CONTAINER = os.environ.get(
-        'BLOB_CONTAINER') or 'images'
+        'BLOB_STORAGE_KEY') or 'IP2TX5WSFctNyK9lzfTWu2KM0RJ8Zf4CGe9t6aBWuinwHwD7HfnYULm5vOM8Tuebeb+zEIZFUL3D+AStF7sEhA=='
+    BLOB_CONTAINER = os.environ.get('BLOB_CONTAINER') or 'images'
 
     SQL_SERVER = os.environ.get(
-        'SQL_SERVER') or 'cmsproject.database.windows.net'
+        'SQL_SERVER') or 'mycmsproject.database.windows.net'
     SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'CMSproject'
-    SQL_USER_NAME = os.environ.get(
-        'SQL_USER_NAME') or 'udacityadmin'
-    SQL_PASSWORD = os.environ.get(
-        'SQL_PASSWORD') or 'Udacity-1'
+    SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or 'myadmin'
+    SQL_PASSWORD = os.environ.get('SQL_PASSWORD') or 'Udacity-1'
     # Below URI may need some adjustments for driver version, based on your OS, if running locally
     SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://' + SQL_USER_NAME + '@' + SQL_SERVER + ':' + \
         SQL_PASSWORD + '@' + SQL_SERVER + ':1433/' + \
@@ -28,7 +24,7 @@ class Config(object):
 
     ### Info for MS Authentication ###
     ### As adapted from: https://github.com/Azure-Samples/ms-identity-python-webapp ###
-    CLIENT_SECRET = "aa762d08-6405-469e-8dfb-b0d0da76a333"
+    CLIENT_SECRET = "lKg8Q~9mIYdX5Bnb8dBbNJVjfYgkpb8LDMYAkbvS"
     # In your production app, Microsoft recommends you to use other ways to store your secret,
     # such as KeyVault, or environment variable as described in Flask's documentation here:
     # https://flask.palletsprojects.com/en/1.1.x/config/#configuring-from-environment-variables
@@ -40,7 +36,7 @@ class Config(object):
     AUTHORITY = "https://login.microsoftonline.com/common"
     # AUTHORITY = "https://login.microsoftonline.com/Enter_the_Tenant_Name_Here"
 
-    CLIENT_ID = "2437c239-f9d1-4ac8-873d-9043ef4b24e7"
+    CLIENT_ID = "11bc0612-9c88-46bd-8072-4352f15f5e3f"
 
     # Used to form an absolute URL; must match to app's redirect_uri set in AAD
     REDIRECT_PATH = "/getAToken"
