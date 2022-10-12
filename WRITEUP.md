@@ -7,24 +7,13 @@
 - *Choose the appropriate solution (VM or App Service) for deploying the app*
 - *Justify your choice*
 
-##### Virtual Machines :
-  - Provides infrastructure as a service so it is the Lower up-front cost compared to purchasing and maintaining hardware. it suits the big project. 
-  - Provides high availability, redundancy, and scalability: vertically by resizing the existing VM to a larger size with more RAM and more CPU, or to a smaller size with less RAM and less CPU, or horizontally you keep the same VM size, but you add more VM instances to the scale set.
- - supports Linux and windows
-
-
-##### App Service :
- - Although you are always paying for the service plan even if the application is not running, it is still the better choice for lightweight applications like our CMS application
- - It provides high availability and auto-scalability: Vertically you can scale up your pricing tier to increases or decreases resources and get more CPU, memory, disk space ... , horizontally increases or decreases the number of Virtual Machine .
- - supports linux and windows
-
-## Azure Virtual Machines vs App Service
+####  Azure Virtual Machines vs App Service: 
 
 
 |              | Virtual Machines (VMs)                                                                                                                                                                                                          | App Service                                                                                                                                                                                                                                                                                                       |
 |--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Cost         | Provides infrastructure as a service so it is the Lower up-front cost compared to purchasing and maintaining hardware. it suits the big project.                                                                                                                                                   |There are three different tiers - Dev/Test, Production, and Isolated. Although you are always paying for the service plan even if the application is not running, it is still the better choice for lightweight applications like our CMS application. |
-| Scalability  | Vertically by resizing the existing VM to a larger size with more RAM and more CPU, or to a smaller size with less RAM and less CPU, or horizontally you keep the same VM size, but you add more VM instances to the scale set.                                                                                                                           | Vertically you can scale up your pricing tier to increases or decreases resources and get more CPU, memory, disk space ... , horizontally increases or decreases the number of Virtual Machine .       |
+| Scalability  | Vertically by resizing the existing VM to a larger size with more RAM and more CPU, or to a smaller size with less RAM and less CPU, or horizontally you keep the same VM size, but you add more VM instances to the scale set.                                                                                                                           | Vertically you can scale up your pricing tier to increases or decreases resources and get more CPU, memory, disk space etc... , horizontally increases or decreases the number of Virtual Machine .       |
 | Availability | Provides high availability                                        |  Provides high availability                                           
 | Workflow     | They can be more time consuming for the developer than other compute options.                                                                                                                                                  | Continuous deployment model using GitHub, Azure DevOps, or any Git repo.                                                                                                                                                                                                                                          |
 
